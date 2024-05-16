@@ -1,8 +1,8 @@
 import { Formik, Form, Field } from "formik";
 
-export default function SearchBar() {
-  const handleSubmit = (evt, actions) => {
-    console.log(evt);
+export default function SearchBar({ onSearch }) {
+  const handleSubmit = ({ search }, actions) => {
+    onSearch({ search });
     actions.resetForm();
   };
 
