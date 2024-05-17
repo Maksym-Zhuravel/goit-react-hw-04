@@ -1,14 +1,15 @@
 import { Formik, Form, Field } from "formik";
 
 export default function SearchBar({ onSearch }) {
-  const handleSubmit = ({ search }, actions) => {
-    onSearch({ search });
-    actions.resetForm();
-  };
-
   return (
     <>
-      <Formik initialValues={{ search: "" }} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={{ search: "" }}
+        onSubmit={(values, actions) => {
+          onSearch(values.search);
+          actions.resetForm();
+        }}
+      >
         <Form>
           <Field type="text" name="search"></Field>
           <button type="submit">Search</button>
