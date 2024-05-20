@@ -7,5 +7,13 @@ export const getImages = async (topic) => {
   const response = await axios.get(
     `search/photos?client_id=${ACCESS_KEY}&page=1&query=${topic}`
   );
+
+  // const response = await axios.get("/search/photos", {
+  //   params: {
+  //     client_id: { ACCESS_KEY },
+  //     page: 1,
+  //     query: topic,
+  //   },
+  // });
   return response.data.results;
 };
