@@ -3,8 +3,9 @@ import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import { useEffect, useState } from "react";
 import { getImages } from "../articles-api";
-import ErrorMessage from "./ErrorMessage/ErrorMessage";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "../ImageModal/ImageModal";
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -12,11 +13,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [modalValues, setModalValues] = useState({
-    urls: "",
-    description: "",
-    likes: "",
-  });
+  const [modalValues, setModalValues] = useState(null);
 
   useEffect(() => {
     if (query.trim() === "") {
@@ -48,9 +45,13 @@ export default function App() {
     setPage(page + 1);
   };
 
-  const handleModal = (urls, description, likes) => {
-    setModalValues({ urls: urls, description: description, likes: likes });
+  const handleModal = async (urls, description, likes) => {
+    setModalValues({ urls, description, likes });
     console.log(modalValues);
+  };
+
+  const closeModal = () => {
+    setModalValues(null);
   };
 
   return (
@@ -62,6 +63,10 @@ export default function App() {
       )}
       {loading && <Loader />}
       <LoadMoreBtn onClick={handleLoadMore} />
+      {}
+      {modalValues && (
+        <ImageModal modalValues={modalValues} closeModal={closeModal} />
+      )}
     </>
   );
 }
