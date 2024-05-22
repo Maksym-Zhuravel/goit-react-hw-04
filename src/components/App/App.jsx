@@ -12,6 +12,11 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
+  const [modalValues, setModalValues] = useState({
+    urls: "",
+    description: "",
+    likes: "",
+  });
 
   useEffect(() => {
     if (query.trim() === "") {
@@ -43,11 +48,18 @@ export default function App() {
     setPage(page + 1);
   };
 
+  const handleModal = (urls, description, likes) => {
+    setModalValues({ urls: urls, description: description, likes: likes });
+    console.log(modalValues);
+  };
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
       {error && <ErrorMessage />}
-      {images.length > 0 && <ImageGallery images={images} />}
+      {images.length > 0 && (
+        <ImageGallery images={images} onClick={handleModal} />
+      )}
       {loading && <Loader />}
       <LoadMoreBtn onClick={handleLoadMore} />
     </>
