@@ -27,6 +27,7 @@ export default function App() {
         setImages((prevImages) => [...prevImages, ...data]);
       } catch (error) {
         setError(true);
+        setImages([]);
       } finally {
         setLoading(false);
       }
@@ -62,8 +63,8 @@ export default function App() {
       {images.length > 0 && (
         <ImageGallery images={images} onClick={handleModal} />
       )}
-      {loading && <Loader />}
       {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
+      {loading && <Loader />}
       {modalValues && (
         <ImageModal modalValues={modalValues} closeModal={closeModal} />
       )}
