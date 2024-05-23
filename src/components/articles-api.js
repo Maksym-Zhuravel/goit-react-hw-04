@@ -9,7 +9,7 @@ export const getImages = async (topic, currentPage) => {
       client_id: ACCESS_KEY,
       page: currentPage,
       query: topic,
-      per_page: 8,
+      per_page: 9,
     },
   });
   return response.data.results;

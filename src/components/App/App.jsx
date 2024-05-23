@@ -45,14 +45,15 @@ export default function App() {
     setPage(page + 1);
   };
 
-  const handleModal = async (urls, description, likes) => {
-    setModalValues({ urls, description, likes });
-    console.log(modalValues);
+  const handleModal = async (urls, description, likes, user) => {
+    setModalValues({ urls, description, likes, user });
   };
 
   const closeModal = () => {
     setModalValues(null);
   };
+
+  console.log(images);
 
   return (
     <>
@@ -62,8 +63,7 @@ export default function App() {
         <ImageGallery images={images} onClick={handleModal} />
       )}
       {loading && <Loader />}
-      <LoadMoreBtn onClick={handleLoadMore} />
-      {}
+      {images.length > 0 && <LoadMoreBtn onClick={handleLoadMore} />}
       {modalValues && (
         <ImageModal modalValues={modalValues} closeModal={closeModal} />
       )}

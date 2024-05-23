@@ -1,0 +1,17 @@
+.btn {
+  display: block;
+  margin: auto;
+  padding: 20px;
+  width: 9%;
+  border-radius: 5%;
+  background-color: lightblue;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 250ms;
+}
+
+.btn:hover {
+  background-color: bisque;
+  transition: 250ms;
+}
