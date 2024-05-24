@@ -1,11 +1,12 @@
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
-import { useEffect, useState } from "react";
-import { getImages } from "../articles-api";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
+import { useEffect, useState } from "react";
+import { getImages } from "../articles-api";
+import css from "../App/App.module.css";
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -57,7 +58,7 @@ export default function App() {
   console.log(images);
 
   return (
-    <>
+    <div className={css.box}>
       <SearchBar onSearch={handleSearch} />
       {error && <ErrorMessage />}
       {images.length > 0 && (
@@ -68,6 +69,6 @@ export default function App() {
       {modalValues && (
         <ImageModal modalValues={modalValues} closeModal={closeModal} />
       )}
-    </>
+    </div>
   );
 }
